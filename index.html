@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maaya Kids Castle, Annur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#5B3FA8; --sun:#F5B82E; --mint:#2FA58A; --rose:#E0577A;
+  --bg:#F3F1FA; --surface:#FFFFFF; --surface-2:#EDE9F7; --ink:#231C3D; --muted:#655E80; --line:#DCD6EC;
+  --brand-ink:#FFFFFF; --ok-bg:#E2F5EF; --bad-bg:#FCE6EC; --wa:#E7F8EC; --wa-ink:#123B22;
+  --display:"Baloo Thambi 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito Sans","Baloo Thambi 2",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17132A; --surface:#221C3B; --surface-2:#2C2549; --ink:#EEEAFB; --muted:#ADA6C8; --line:#3A3260;
+  --ok-bg:#163A31; --bad-bg:#45202D; --wa:#16301F; --wa-ink:#D6F5DF; color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#17132A; --surface:#221C3B; --surface-2:#2C2549; --ink:#EEEAFB; --muted:#ADA6C8; --line:#3A3260;
+  --ok-bg:#163A31; --bad-bg:#45202D; --wa:#16301F; --wa-ink:#D6F5DF; color-scheme:dark;}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--body)}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0}
+h2{font-size:1.75rem;font-weight:700}
+h3{font-size:1.15rem;font-weight:700}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+a{color:var(--brand)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--brand)}
+
+/* Header: the castle banner is the one bold moment */
+.top{background:var(--brand);color:var(--brand-ink);position:relative;overflow:hidden}
+.top-inner{max-width:1120px;margin:0 auto;padding:18px 20px 0;display:flex;align-items:center;gap:14px}
+.crest{width:58px;height:58px;flex:none}
+.brand-name{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,3.4vw,2.1rem);letter-spacing:-.01em}
+.brand-place{opacity:.85;font-size:.95rem;margin-top:-2px}
+.top-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.pill{border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;font-weight:600;font-size:.9rem;white-space:nowrap}
+.pill:hover{background:rgba(255,255,255,.14)}
+.badge{display:inline-block;min-width:20px;padding:0 6px;border-radius:10px;background:var(--sun);color:#2A1E00;font-size:.75rem;font-weight:800;margin-left:4px;text-align:center}
+.battlement{display:block;width:100%;height:18px;margin-top:14px}
+.tabs{max-width:1120px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;text-decoration:none;color:var(--muted);font-weight:700;padding:12px 10px 10px;border-bottom:3px solid transparent;font-size:.95rem}
+.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--brand)}
+.tabwrap{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+
+main{max-width:1120px;margin:0 auto;padding:24px 20px 80px}
+.head{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.sub{color:var(--muted);margin:4px 0 0;max-width:62ch}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.panel+.panel{margin-top:16px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.stat{padding:16px 18px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.stat b{display:block;font-family:var(--display);font-size:2rem;line-height:1.1}
+.stat span{color:var(--muted);font-size:.92rem}
+.stat.sun{border-top:6px solid var(--sun)} .stat.mint{border-top:6px solid var(--mint)} .stat.rose{border-top:6px solid var(--rose)} .stat.brand{border-top:6px solid var(--brand)}
+label.f{display:block;font-weight:700;font-size:.9rem;margin:12px 0 4px}
+.in{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+textarea.in{min-height:96px;resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.row>*{flex:1 1 160px}
+.btn{border:0;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink)}
+.btn.small{padding:6px 12px;font-size:.88rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.who{flex:1;min-width:0}
+.who small{display:block;color:var(--muted)}
+.pa{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.pa button{border:0;background:transparent;padding:6px 14px;font-weight:800;cursor:pointer;color:var(--muted)}
+.pa button[aria-pressed="true"].p{background:var(--mint);color:#fff}
+.pa button[aria-pressed="true"].a{background:var(--rose);color:#fff}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.8rem;font-weight:700;background:var(--surface-2)}
+.tag.ok{background:var(--ok-bg)} .tag.bad{background:var(--bad-bg)}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:12px;padding:4px;gap:4px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;border-radius:9px;padding:6px 12px;font-weight:700;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;cursor:pointer;font-size:.88rem;font-weight:600}
+.bar{height:8px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--mint)}
+.empty{color:var(--muted);padding:18px 0}
+
+/* Calendar */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.cal .dow{font-size:.8rem;color:var(--muted);font-weight:700;text-align:center}
+.day{min-height:84px;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--surface);cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:3px;overflow:hidden}
+.day.out{opacity:.4}
+.day.today{border:2px solid var(--brand)}
+.day .n{font-weight:800;font-size:.85rem}
+.ev{font-size:.72rem;border-radius:6px;padding:1px 5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.legend{display:flex;gap:14px;font-size:.88rem;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:middle}
+@media (max-width:640px){.day{min-height:56px}.ev{font-size:0;height:6px;padding:0}}
+
+/* Drawer & modal */
+.scrim{position:fixed;inset:0;background:rgba(20,14,40,.45);z-index:20;display:none}
+.scrim.on{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);z-index:21;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.on{transform:none}
+.drawer header{display:flex;align-items:center;gap:8px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.drawer .msgs{flex:1;overflow:auto;padding:16px;background:var(--surface-2)}
+.bubble{background:var(--wa);color:var(--wa-ink);border-radius:14px 14px 4px 14px;padding:10px 12px;margin:0 0 12px auto;max-width:92%;white-space:pre-wrap;font-size:.94rem}
+.bubble .meta{font-size:.76rem;opacity:.75;margin-bottom:4px;font-weight:700;white-space:normal}
+.bubble a{font-size:.82rem;font-weight:700;color:inherit}
+.modal{position:fixed;inset:0;display:none;place-items:center;z-index:30;padding:20px}
+.modal.on{display:grid}
+.modal .box{background:var(--surface);border-radius:20px;padding:20px;width:min(480px,100%);max-height:85vh;overflow:auto}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;font-weight:700;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw}
+.toast.on{opacity:1}
+
+/* Assistant chat */
+.chat{display:flex;flex-direction:column;gap:10px;min-height:280px;max-height:420px;overflow:auto;padding:14px;background:var(--surface-2);border-radius:14px}
+.q,.ans{max-width:80%;padding:9px 12px;border-radius:14px;white-space:pre-wrap}
+.q{align-self:flex-end;background:var(--wa);color:var(--wa-ink);border-bottom-right-radius:4px}
+.ans{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:4px}
+.ans small{display:block;color:var(--muted);font-weight:700;font-size:.75rem}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.sw{width:38px;height:38px;border-radius:50%;border:3px solid transparent;cursor:pointer}
+.sw[aria-pressed="true"]{border-color:var(--ink)}
+.login{max-width:880px;margin:0 auto;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.kid{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--sun);color:#2A1E00;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.3rem;flex:none}
+a.stat{text-decoration:none;color:inherit}
+.sync{font-size:.8rem;opacity:.85;display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <svg class="crest" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M10 30h8v-8h6v8h4V16h8v14h4v-8h6v8h8v26H10z" fill="#fff"/>
+      <path d="M32 6v10" stroke="#fff" stroke-width="2.5"/><path d="M32 6l10 3-10 3z" fill="var(--sun)"/>
+      <path d="M27 56V46a5 5 0 0110 0v10z" fill="var(--brand)"/>
+      <circle cx="20" cy="38" r="2.6" fill="var(--sun)"/><circle cx="44" cy="38" r="2.6" fill="var(--sun)"/>
+    </svg>
+    <div>
+      <div class="brand-name" id="schoolName">Maaya Kids Castle</div>
+      <div class="brand-place" id="schoolPlace">Annur</div><span class="sync" id="sync"></span>
+    </div>
+    <div class="top-actions">
+      <button class="pill" id="langBtn" type="button">தமிழ்</button>
+      <button class="pill" id="logoutBtn" type="button" hidden data-t="logout">Log out</button>
+      <button class="pill" id="outBtn" type="button"><span data-t="parentMsgs">Parent messages</span><span class="badge" id="outCount">0</span></button>
+    </div>
+  </div>
+  <svg class="battlement" viewBox="0 0 400 18" preserveAspectRatio="none" aria-hidden="true"><path d="M0 18V8h20V0h20v8h20V0h20v8h20V0h20v8h20V0h20v8h20V0h20v8h20V0h20v8h20V0h20v8h20V0h20v8h20V0h20v8h20V0h20v18z" fill="var(--surface)"/></svg>
+</header>
+<div class="tabwrap"><nav class="tabs" id="tabs" aria-label="Sections"></nav></div>
+<main id="view"></main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Parent messages">
+  <header><h3 style="flex:1" data-t="parentMsgs">Parent messages</h3><button class="btn ghost small" id="clearOut" type="button" data-t="clear">Clear</button><button class="btn ghost small" id="closeOut" type="button" aria-label="Close">✕</button></header>
+  <p class="sub" style="padding:10px 16px 0;margin:0;font-size:.88rem" data-t="outNote">Every message the portal sends to parents appears here. Tap “Open in WhatsApp” to send it from the school phone.</p>
+  <div class="msgs" id="msgs"></div>
+</aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="box" id="modalBox"></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ---------- i18n ---------- */
+const T={en:{dashboard:"Home",attendance:"Attendance",staff:"Staff attendance",fees:"Fees & payments",homework:"Homework",classwork:"Classwork",calendar:"Calendar",broadcasts:"Broadcasts",leads:"Admissions",assistant:"AI assistant",profile:"School profile",
+parentMsgs:"Parent messages",clear:"Clear",outNote:"Every message the portal sends to parents appears here. Open this page on the school phone (WhatsApp 9080094817) and tap “Open in WhatsApp” to send.",
+selectClass:"Class",date:"Date",save:"Save",send:"Send",markAll:"Mark all present",saveAtt:"Save attendance",post:"Post",openWa:"Open in WhatsApp",home:"Home",notices:"Notices",parents:"Parents & logins",logout:"Log out",
+welcome:"Welcome",loginSub:"Parents and school staff log in here.",parentLogin:"I’m a parent",parentLoginSub:"Use the mobile number you gave the school and the PIN the school sent you on WhatsApp.",mobile:"Mobile number",login:"Log in",
+staffLogin:"School staff",staffLoginSub:"For the office and teachers.",staffPin:"Staff PIN",continueAdmin:"Continue as school admin",badLogin:"That mobile number and PIN don’t match. Check the WhatsApp message from the school.",badPin:"Wrong staff PIN.",
+present:"Present",absent:"Absent",notMarked:"Not marked yet",paid:"Paid",due:"Due"},
+ta:{dashboard:"முகப்பு",attendance:"வருகைப்பதிவு",staff:"பணியாளர் வருகை",fees:"கட்டணங்கள்",homework:"வீட்டுப்பாடம்",classwork:"வகுப்புப்பணி",calendar:"நாட்காட்டி",broadcasts:"அறிவிப்புகள்",leads:"சேர்க்கை",assistant:"AI உதவியாளர்",profile:"பள்ளி விவரம்",
+parentMsgs:"பெற்றோர் செய்திகள்",clear:"அழி",outNote:"பெற்றோருக்கு அனுப்பப்படும் ஒவ்வொரு செய்தியும் இங்கே தெரியும். பள்ளி போனில் (WhatsApp 9080094817) இந்தப் பக்கத்தைத் திறந்து “WhatsApp-இல் திற” என்பதைத் தட்டவும்.",
+selectClass:"வகுப்பு",date:"தேதி",save:"சேமி",send:"அனுப்பு",markAll:"அனைவரும் வருகை",saveAtt:"வருகையைச் சேமி",post:"பதிவிடு",openWa:"WhatsApp-இல் திற",home:"முகப்பு",notices:"அறிவிப்புகள்",parents:"பெற்றோர் உள்நுழைவு",logout:"வெளியேறு",
+welcome:"வணக்கம்",loginSub:"பெற்றோர் மற்றும் பள்ளி ஊழியர்கள் இங்கே உள்நுழையலாம்.",parentLogin:"நான் பெற்றோர்",parentLoginSub:"பள்ளியில் கொடுத்த கைபேசி எண்ணையும், WhatsApp-இல் வந்த PIN-ஐயும் பயன்படுத்தவும்.",mobile:"கைபேசி எண்",login:"உள்நுழை",
+staffLogin:"பள்ளி ஊழியர்",staffLoginSub:"அலுவலகம் மற்றும் ஆசிரியர்களுக்கு.",staffPin:"ஊழியர் PIN",continueAdmin:"நிர்வாகியாகத் தொடர்",badLogin:"கைபேசி எண்ணும் PIN-உம் பொருந்தவில்லை. பள்ளியின் WhatsApp செய்தியைப் பார்க்கவும்.",badPin:"தவறான ஊழியர் PIN.",
+present:"வருகை",absent:"வரவில்லை",notMarked:"இன்னும் பதிவு இல்லை",paid:"செலுத்தப்பட்டது",due:"செலுத்த வேண்டும்"}};
+const t=k=>(T[S.lang]||T.en)[k]||T.en[k]||k;
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad=n=>String(n).padStart(2,"0");
+const ymd=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const today=()=>ymd(new Date());
+const addDays=(iso,n)=>{const d=new Date(iso+"T00:00");d.setDate(d.getDate()+n);return ymd(d)};
+const nice=iso=>iso?new Date(iso+"T00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"";
+const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+const uid=()=>Math.random().toString(36).slice(2,9);
+const CLASSES=["Playgroup","Pre-KG","LKG","UKG"];
+const COLORS={event:"#5B3FA8",holiday:"#E0577A",birthday:"#2FA58A"};
+
+/* ---------- data ---------- */
+const KEY="mkc-portal-v1";
+function seed(){
+  const td=today(), m=td.slice(0,7);
+  const kids=[["Aadhira","LKG","Mrs. Kavitha"],["Kavin","LKG","Mr. Senthil"],["Nila","LKG","Mrs. Revathi"],["Harini","LKG","Mrs. Uma"],["Yazhini","UKG","Mr. Arun"],["Mithran","UKG","Mrs. Divya"],["Diya","UKG","Mrs. Meena"],["Rithvik","UKG","Mr. Prakash"],["Ishaan","Pre-KG","Mr. Senthil"],["Tara","Pre-KG","Mr. Gopal"],["Vetri","Playgroup","Mrs. Anitha"],["Anika","Playgroup","Mr. Rajesh"]];
+  const students=kids.map((k,i)=>({id:"s"+i,name:k[0],cls:k[1],parent:k[2],phone:"90000000"+pad((i===8?1:i)+1),dob:`20${k[1]==="UKG"?21:k[1]==="LKG"?22:k[1]==="Pre-KG"?23:24}-${m.slice(5)}-${pad(3+i*2)}`}));
+  return {lang:"en",
+    settings:{name:"Maaya Kids Castle",place:"Annur",tagline:"A happy first school for little ones",phone:"9080094817",whatsapp:"9080094817",address:"Annur (add the full address in School profile)",timings:"9:30 am to 3:30 pm, Monday to Friday",ages:"Playgroup 1.5–2.5 yrs, Pre-KG 2.5–3.5 yrs, LKG 3.5–4.5 yrs, UKG 4.5–5.5 yrs",admissions:true,brand:"#5B3FA8",staffPin:"1234"},
+    parentPins:Object.fromEntries([...new Set(students.map(s=>s.phone))].map((p,i)=>[p,String(4100+i*537).slice(-4)])),
+    students,
+    staff:[{name:"Priya",role:"Class teacher, LKG"},{name:"Lakshmi",role:"Class teacher, UKG"},{name:"Deepa",role:"Class teacher, Pre-KG"},{name:"Saranya",role:"Class teacher, Playgroup"},{name:"Selvi",role:"Helper"},{name:"Murugan",role:"Van driver"}],
+    attendance:{},staffAtt:{},
+    fees:[{id:"f1",title:"Term 2 tuition",amount:12000,due:addDays(td,6),target:"all",val:"",kind:"recurring",period:"Every term"},{id:"f2",title:"Annual day costume",amount:350,due:addDays(td,-2),target:"class",val:"LKG",kind:"one",period:""}],
+    payments:[{fid:"f1",sid:"s0",at:addDays(td,-3)},{fid:"f1",sid:"s4",at:addDays(td,-1)},{fid:"f1",sid:"s8",at:addDays(td,-1)},{fid:"f2",sid:"s1",at:addDays(td,-4)}],
+    reminders:{auto:true,rules:[{days:2,when:"before"},{days:3,when:"after"}]},
+    posts:[{id:uid(),kind:"homework",cls:"UKG",text:"Write numbers 1 to 20 in the notebook. Colour the apple on page 12.",at:td}],
+    events:[{id:uid(),type:"event",title:"Yellow colour day",desc:"Children can come in yellow clothes.",start:addDays(td,2),end:""},{id:uid(),type:"event",title:"Parent–teacher meeting",desc:"10 am to 12 noon in the classrooms.",start:addDays(td,5),end:""},{id:uid(),type:"holiday",title:"Holiday",desc:"School closed.",start:addDays(td,9),end:addDays(td,10)}],
+    broadcasts:[],
+    leads:[{id:uid(),name:"Mrs. Gayathri",phone:"9000000101",child:"Sanjana",cls:"Pre-KG",status:"New",source:"Website form",at:addDays(td,-1),note:"Wants to visit on Saturday"},{id:uid(),name:"Mr. Vignesh",phone:"9000000102",child:"Aarav",cls:"LKG",status:"Contacted",source:"WhatsApp",at:addDays(td,-3),note:""}],
+    outbox:[]};
+}
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!S.settings)S=seed();
+S.parentPins=S.parentPins||{};S.settings.staffPin=S.settings.staffPin||"1234";
+/* shared storage: the school's data lives in one shared document so parents see what staff enter */
+let REF=null,lastSent="",writing=false,again=false,timer=null,CAN_EDIT=false,pend=false;
+const syncNote=x=>{$("#sync").textContent=x};
+const shared=()=>{const o=Object.assign({},S);delete o.lang;o.outbox=(o.outbox||[]).slice(0,80);return o};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(REF){clearTimeout(timer);timer=setTimeout(push,400)}}
+async function push(){if(writing){again=true;return}writing=true;const str=JSON.stringify(shared());
+  if(str!==lastSent){try{await REF.set(JSON.parse(str));lastSent=str;syncNote("Saved for everyone")}catch(e){syncNote("Not saved online. Changes are on this device only.")}}
+  writing=false;if(again){again=false;push()}}
+(async()=>{try{if(!window.claude||!window.claude.use)return;const db=await window.claude.use("db");if(!db)return;REF=db.doc("school/main");syncNote("Connecting…");
+  REF.onSnapshot(snap=>{syncNote("Live");if(!snap.exists)return;const str=JSON.stringify(snap.data());if(str===lastSent)return;lastSent=str;const lang=S.lang;S=JSON.parse(str);S.lang=lang;S.parentPins=S.parentPins||{};
+    try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}refresh()},()=>syncNote("Offline. Showing saved copy."));
+  const u=await window.claude.use("user");if(u){CAN_EDIT=await u.canEdit().catch(()=>false);if(!SES)refresh()}}catch(e){}})();
+let SES=(()=>{try{return JSON.parse(localStorage.getItem("mkc-session"))}catch(e){return null}})();
+const setSes=v=>{SES=v;try{v?localStorage.setItem("mkc-session",JSON.stringify(v)):localStorage.removeItem("mkc-session")}catch(e){}};
+const norm=p=>String(p||"").replace(/\D/g,"").slice(-10);
+const isParent=()=>!!(SES&&SES.role==="parent");
+const myKids=()=>isParent()?S.students.filter(s=>norm(s.phone)===SES.phone):[];
+function refresh(force){const a=document.activeElement;if(!force&&a&&$("#view").contains(a)&&/INPUT|TEXTAREA|SELECT/.test(a.tagName)){pend=true;return}chrome();drawOut();render()}
+document.addEventListener("focusout",()=>{if(pend)setTimeout(()=>{if(pend){pend=false;refresh()}},60)});
+const ui={child:null,attCls:"LKG",attDate:today(),staffDate:today(),calMonth:today().slice(0,7),feeView:"list",leadFilter:"All",chat:[]};
+
+/* ---------- messaging ---------- */
+const sch=()=>`${S.settings.name}, ${S.settings.place}`;
+function msg(to,phone,text,kind){S.outbox.unshift({id:uid(),to,phone,text,kind,at:new Date().toLocaleString("en-IN",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})});save();drawOut();}
+const tpl={
+ absent:(c,d)=>S.lang==="ta"?`அன்புள்ள பெற்றோரே, ${c} இன்று (${nice(d)}) பள்ளிக்கு வரவில்லை. ஏதேனும் தகவல் இருந்தால் தெரிவிக்கவும். — ${sch()}`:`Dear parent, ${c} was marked absent today (${nice(d)}). Please let us know if everything is okay. — ${sch()}`,
+ remind:(c,f)=>S.lang==="ta"?`வணக்கம், ${c}க்கான ${money(f.amount)} (${f.title}) கட்டணம் ${nice(f.due)}க்குள் செலுத்த வேண்டும். நன்றி! — ${sch()}`:`Hello, this is a gentle reminder that ${money(f.amount)} (${f.title}) is due for ${c} on ${nice(f.due)}. Thank you! — ${sch()}`,
+ receipt:(c,f)=>S.lang==="ta"?`${c}க்கான ${money(f.amount)} (${f.title}) கட்டணம் பெறப்பட்டது. நன்றி! — ${sch()}`:`Payment received: ${money(f.amount)} for ${c} (${f.title}). Thank you! — ${sch()}`,
+ post:(k,c,x)=>`${c} ${k==="homework"?(S.lang==="ta"?"வீட்டுப்பாடம்":"homework"):(S.lang==="ta"?"வகுப்புப்பணி":"classwork")}: ${x}\n— ${sch()}`
+};
+const wa=(phone,text)=>`https://wa.me/91${String(phone).replace(/\D/g,"").slice(-10)}?text=${encodeURIComponent(text)}`;
+function drawOut(){
+  $("#outCount").textContent=S.outbox.length;
+  $("#msgs").innerHTML=S.outbox.length?S.outbox.map(m=>`<div class="bubble"><div class="meta">To ${esc(m.to)}, ${esc(m.at)}</div>${esc(m.text)}${m.phone?`<div style="margin-top:6px"><a href="${wa(m.phone,m.text)}" target="_blank" rel="noopener">${t("openWa")}</a></div>`:""}</div>`).join(""):`<p class="empty">No messages yet. Save attendance, post homework or send a fee reminder and the parent message shows up here.</p>`;
+}
+function openOut(on){$("#drawer").classList.toggle("on",on);$("#scrim").classList.toggle("on",on);}
+$("#outBtn").onclick=()=>openOut(true);$("#closeOut").onclick=()=>openOut(false);$("#scrim").onclick=()=>{openOut(false);closeModal()};
+$("#clearOut").onclick=()=>{S.outbox=[];save();drawOut()};
+function toast(s){const el=$("#toast");el.textContent=s;el.classList.add("on");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("on"),2600);}
+function modal(html){$("#modalBox").innerHTML=html;$("#modal").classList.add("on");$("#scrim").classList.add("on");const f=$("#modalBox").querySelector("input,select,textarea,button");f&&f.focus();}
+function closeModal(){$("#modal").classList.remove("on");if(!$("#drawer").classList.contains("on"))$("#scrim").classList.remove("on");}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal();openOut(false)}});
+
+/* ---------- shared bits ---------- */
+const classOpts=(sel,withAll)=>(withAll?`<option value="all">${withAll}</option>`:"")+CLASSES.map(c=>`<option ${c===sel?"selected":""}>${c}</option>`).join("");
+const kidsIn=c=>c==="all"?S.students:S.students.filter(s=>s.cls===c);
+const feeKids=f=>f.target==="all"?S.students:f.target==="class"?kidsIn(f.val):S.students.filter(s=>s.id===f.val);
+const paid=(f,s)=>S.payments.some(p=>p.fid===f.id&&p.sid===s.id);
+const head=(title,sub,extra="")=>`<div class="head"><div><h2>${title}</h2>${sub?`<p class="sub">${sub}</p>`:""}</div>${extra}</div>`;
+
+/* ---------- views ---------- */
+const V={};
+V.dashboard=()=>{
+  const td=today();let present=0,marked=0;
+  CLASSES.forEach(c=>{const a=S.attendance[td+"|"+c];if(a){marked++;present+=Object.values(a).filter(v=>v==="P").length}});
+  let pending=0;S.fees.forEach(f=>feeKids(f).forEach(s=>{if(!paid(f,s))pending+=f.amount}));
+  const newLeads=S.leads.filter(l=>l.status==="New").length;
+  const next=S.events.filter(e=>e.start>=td).sort((a,b)=>a.start.localeCompare(b.start))[0];
+  const hr=new Date().getHours();
+  return head((hr<12?"Good morning":hr<17?"Good afternoon":"Good evening")+", "+esc(S.settings.name)+" team",esc(S.settings.tagline)+". Here’s today at a glance.")+
+  `<div class="grid g4">
+    <a class="stat mint" href="#attendance" style="text-decoration:none;color:inherit"><b>${present}/${S.students.length}</b><span>Children present (${marked} of ${CLASSES.length} classes marked)</span></a>
+    <a class="stat rose" href="#fees" style="text-decoration:none;color:inherit"><b>${money(pending)}</b><span>Fees still to collect</span></a>
+    <a class="stat sun" href="#leads" style="text-decoration:none;color:inherit"><b>${newLeads}</b><span>New admission enquiries</span></a>
+    <a class="stat brand" href="#calendar" style="text-decoration:none;color:inherit"><b style="font-size:1.25rem;padding:6px 0">${next?esc(next.title):"Nothing planned"}</b><span>${next?nice(next.start):"Add an event in the calendar"}</span></a>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="panel"><h3>Today’s classes</h3><ul class="list">${CLASSES.map(c=>{const a=S.attendance[td+"|"+c];const n=kidsIn(c).length;return `<li><div class="who">${c}<small>${n} children</small></div>${a?`<span class="tag ok">${Object.values(a).filter(v=>v==="P").length} present</span>`:`<a class="btn small ghost" href="#attendance" data-cls="${c}">Mark attendance</a>`}</li>`}).join("")}</ul></div>
+    <div class="panel"><h3>Latest enquiries</h3><ul class="list">${S.leads.slice(0,4).map(l=>`<li><div class="who">${esc(l.name)}<small>For ${esc(l.child)}, ${esc(l.cls)}, ${nice(l.at)}</small></div><span class="tag">${esc(l.status)}</span></li>`).join("")||`<li class="empty">No enquiries yet.</li>`}</ul></div>
+  </div>`;
+};
+V.attendance=()=>{
+  const key=ui.attDate+"|"+ui.attCls, cur=S.attendance[key]||{};
+  ui.attDraft=ui.attDraft&&ui.attDraft._k===key?ui.attDraft:Object.assign({_k:key},cur);
+  const kids=kidsIn(ui.attCls);
+  return head(t("attendance"),"Absent children’s parents get a WhatsApp message as soon as you save.")+
+  `<div class="panel"><div class="row"><div><label class="f" for="ac">${t("selectClass")}</label><select class="in" id="ac">${classOpts(ui.attCls)}</select></div><div><label class="f" for="ad">${t("date")}</label><input class="in" type="date" id="ad" value="${ui.attDate}"></div></div>
+  <div class="btnrow"><button class="btn ghost small" id="allP">${t("markAll")}</button><button class="btn ghost small" id="csv">Show as CSV</button>${S.attendance[key]?`<span class="tag ok" style="align-self:center">Saved</span>`:""}</div>
+  <ul class="list" style="margin-top:8px">${kids.map(s=>`<li><div class="who">${esc(s.name)}<small>${esc(s.parent)}</small></div><div class="pa" role="group" aria-label="${esc(s.name)}"><button class="p" data-s="${s.id}" data-v="P" aria-pressed="${ui.attDraft[s.id]==="P"}">P</button><button class="a" data-s="${s.id}" data-v="A" aria-pressed="${ui.attDraft[s.id]==="A"}">A</button></div></li>`).join("")}</ul>
+  <div class="btnrow"><button class="btn" id="saveAtt">${t("saveAtt")}</button></div></div>`;
+};
+V.attendance.bind=()=>{
+  $("#ac").onchange=e=>{ui.attCls=e.target.value;render()};$("#ad").onchange=e=>{ui.attDate=e.target.value;render()};
+  document.querySelectorAll(".pa button").forEach(b=>b.onclick=()=>{ui.attDraft[b.dataset.s]=b.dataset.v;render()});
+  $("#allP").onclick=()=>{kidsIn(ui.attCls).forEach(s=>ui.attDraft[s.id]="P");render()};
+  $("#csv").onclick=()=>{const rows=["Date,Class,Child,Status",...kidsIn(ui.attCls).map(s=>`${ui.attDate},${ui.attCls},${s.name},${ui.attDraft[s.id]||""}`)];modal(`<h3>Attendance CSV</h3><p class="sub">Select all and copy into Excel or Google Sheets.</p><textarea class="in" style="min-height:200px;font-family:monospace">${esc(rows.join("\n"))}</textarea><div class="btnrow"><button class="btn" onclick="closeModal()">Done</button></div>`)};
+  $("#saveAtt").onclick=()=>{const kids=kidsIn(ui.attCls);if(kids.some(s=>!ui.attDraft[s.id])){toast("Mark every child as P or A first.");return}
+    const d=Object.assign({},ui.attDraft);delete d._k;S.attendance[ui.attDate+"|"+ui.attCls]=d;
+    const ab=kids.filter(s=>d[s.id]==="A");ab.forEach(s=>msg(s.parent,s.phone,tpl.absent(s.name,ui.attDate),"absent"));save();
+    toast(`Attendance saved. ${ab.length} parent${ab.length===1?"":"s"} notified.`);render();};
+};
+V.staff=()=>{
+  const cur=S.staffAtt[ui.staffDate]||{};ui.staffDraft=ui.staffDraft&&ui.staffDraft._k===ui.staffDate?ui.staffDraft:Object.assign({_k:ui.staffDate},cur);
+  const hist=Object.keys(S.staffAtt).sort().reverse().slice(0,7);
+  return head(t("staff"),"Mark teachers and support staff in and keep a running history.")+
+  `<div class="grid g2"><div class="panel"><label class="f" for="sd">${t("date")}</label><input class="in" type="date" id="sd" value="${ui.staffDate}">
+  <ul class="list" style="margin-top:8px">${S.staff.map((s,i)=>`<li><div class="who">${esc(s.name)}<small>${esc(s.role)}</small></div><div class="pa"><button class="p" data-i="${i}" data-v="P" aria-pressed="${ui.staffDraft[i]==="P"}">P</button><button class="a" data-i="${i}" data-v="A" aria-pressed="${ui.staffDraft[i]==="A"}">A</button></div></li>`).join("")}</ul>
+  <div class="btnrow"><button class="btn" id="saveStaff">${t("save")}</button></div></div>
+  <div class="panel"><h3>History</h3><ul class="list">${hist.map(d=>{const v=Object.entries(S.staffAtt[d]).filter(([k])=>k!=="_k");return `<li><div class="who">${nice(d)}</div><span class="tag ok">${v.filter(x=>x[1]==="P").length} present</span><span class="tag bad">${v.filter(x=>x[1]==="A").length} absent</span></li>`}).join("")||`<li class="empty">Saved days show up here.</li>`}</ul></div></div>`;
+};
+V.staff.bind=()=>{
+  $("#sd").onchange=e=>{ui.staffDate=e.target.value;render()};
+  document.querySelectorAll(".pa button").forEach(b=>b.onclick=()=>{ui.staffDraft[b.dataset.i]=b.dataset.v;render()});
+  $("#saveStaff").onclick=()=>{const d=Object.assign({},ui.staffDraft);delete d._k;S.staffAtt[ui.staffDate]=d;save();toast("Staff attendance saved.");render()};
+};
+V.fees=()=>{
+  let total=0,got=0;S.fees.forEach(f=>feeKids(f).forEach(s=>{total+=f.amount;if(paid(f,s))got+=f.amount}));
+  const tgt=f=>f.target==="all"?"Everyone":f.target==="class"?f.val:(S.students.find(s=>s.id===f.val)||{}).name;
+  return head(t("fees"),"Create fees, record payments and let the portal remind parents on WhatsApp.",`<div class="seg" role="group"><button data-fv="list" aria-pressed="${ui.feeView==="list"}">Fees</button><button data-fv="create" aria-pressed="${ui.feeView==="create"}">Create fee</button><button data-fv="rem" aria-pressed="${ui.feeView==="rem"}">Reminder schedule</button></div>`)+
+  (ui.feeView==="list"?`<div class="grid g4"><div class="stat mint"><b>${money(got)}</b><span>Collected</span></div><div class="stat rose"><b>${money(total-got)}</b><span>Pending</span></div></div>
+  <div class="grid g2" style="margin-top:16px">${S.fees.map(f=>{const k=feeKids(f),p=k.filter(s=>paid(f,s)).length,late=f.due<today();return `<div class="panel"><div style="display:flex;justify-content:space-between;gap:8px"><h3>${esc(f.title)}</h3><b>${money(f.amount)}</b></div>
+   <p class="sub">${esc(tgt(f))}${f.kind==="recurring"?", "+esc(f.period):", one-time"}. Due ${nice(f.due)} ${late&&p<k.length?`<span class="tag bad">Overdue</span>`:""}</p>
+   <div class="bar"><i style="width:${k.length?p/k.length*100:0}%"></i></div><p class="sub" style="font-size:.88rem">${p} of ${k.length} paid</p>
+   <div class="btnrow"><button class="btn small" data-pay="${f.id}" ${p===k.length?"disabled":""}>Record payment</button><button class="btn small ghost" data-rem="${f.id}" ${p===k.length?"disabled":""}>Send reminders</button></div></div>`}).join("")}</div>`
+  :ui.feeView==="create"?`<div class="panel" style="max-width:560px"><label class="f" for="ft">Fee name</label><input class="in" id="ft" placeholder="Term 3 tuition">
+   <label class="f">Type</label><div class="seg" id="fk"><button data-k="one" aria-pressed="true">One-time payment</button><button data-k="recurring" aria-pressed="false">Recurring</button></div>
+   <div id="fper" hidden><label class="f" for="fp">Repeats</label><select class="in" id="fp"><option>Every month</option><option selected>Every term</option><option>Every year</option></select></div>
+   <label class="f" for="fw">Who pays</label><select class="in" id="fw"><option value="all">Everyone</option>${CLASSES.map(c=>`<option value="class:${c}">Class: ${c}</option>`).join("")}${S.students.map(s=>`<option value="student:${s.id}">Child: ${esc(s.name)} (${s.cls})</option>`).join("")}</select>
+   <div class="row"><div><label class="f" for="fa">Amount (₹)</label><input class="in" type="number" min="1" id="fa"></div><div><label class="f" for="fd">Due date</label><input class="in" type="date" id="fd" value="${addDays(today(),7)}"></div></div>
+   <div class="btnrow"><button class="btn" id="mkFee">Create fee</button><button class="btn ghost" data-fv="list">Back to fees</button></div></div>`
+  :`<div class="panel" style="max-width:560px"><h3>Automatic reminder schedule</h3><p class="sub">When a fee is unpaid, a WhatsApp reminder goes to the parent on these days.</p>
+   <label style="display:flex;gap:8px;align-items:center;margin:12px 0;font-weight:700"><input type="checkbox" id="rAuto" ${S.reminders.auto?"checked":""}> Send reminders automatically</label>
+   <div class="chips">${S.reminders.rules.map((r,i)=>`<span class="chip">${r.days} day${r.days==1?"":"s"} ${r.when==="before"?"before the due date":"after (overdue)"} <button class="btn ghost small" style="padding:0 6px" data-del="${i}" aria-label="Remove">✕</button></span>`).join("")}</div>
+   <div class="row" style="margin-top:12px"><div><label class="f" for="rd">Days</label><input class="in" type="number" min="0" id="rd" value="1"></div><div><label class="f" for="rw">When</label><select class="in" id="rw"><option value="before">Before the due date</option><option value="after">After the due date</option></select></div></div>
+   <div class="btnrow"><button class="btn ghost" id="addRule">Add reminder</button><button class="btn" id="runRem">Run today’s reminders now</button></div></div>`);
+};
+V.fees.bind=()=>{
+  document.querySelectorAll("[data-fv]").forEach(b=>b.onclick=()=>{ui.feeView=b.dataset.fv;render()});
+  document.querySelectorAll("[data-rem]").forEach(b=>b.onclick=()=>{const f=S.fees.find(x=>x.id===b.dataset.rem);const un=feeKids(f).filter(s=>!paid(f,s));un.forEach(s=>msg(s.parent,s.phone,tpl.remind(s.name,f),"reminder"));toast(`${un.length} reminder${un.length===1?"":"s"} sent.`)});
+  document.querySelectorAll("[data-pay]").forEach(b=>b.onclick=()=>{const f=S.fees.find(x=>x.id===b.dataset.pay);const un=feeKids(f).filter(s=>!paid(f,s));
+    modal(`<h3>Record payment: ${esc(f.title)}</h3><label class="f" for="ps">Child</label><select class="in" id="ps">${un.map(s=>`<option value="${s.id}">${esc(s.name)} (${s.cls})</option>`).join("")}</select><p class="sub">${money(f.amount)}. The parent gets a receipt on WhatsApp.</p><div class="btnrow"><button class="btn" id="doPay">Record payment</button><button class="btn ghost" onclick="closeModal()">Cancel</button></div>`);
+    $("#doPay").onclick=()=>{const s=S.students.find(x=>x.id===$("#ps").value);S.payments.push({fid:f.id,sid:s.id,at:today()});msg(s.parent,s.phone,tpl.receipt(s.name,f),"receipt");save();closeModal();toast("Payment recorded. Receipt sent.");render()};});
+  if($("#fk")){let k="one";$("#fk").querySelectorAll("button").forEach(b=>b.onclick=()=>{k=b.dataset.k;$("#fk").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));$("#fper").hidden=k!=="recurring"});
+    $("#mkFee").onclick=()=>{const title=$("#ft").value.trim(),amount=+$("#fa").value;if(!title||!amount){toast("Add a fee name and amount.");return}
+      const [target,val=""]=$("#fw").value.split(":");S.fees.unshift({id:uid(),title,amount,due:$("#fd").value,target,val,kind:k,period:k==="recurring"?$("#fp").value:""});save();ui.feeView="list";toast("Fee created.");render()};}
+  if($("#rAuto")){$("#rAuto").onchange=e=>{S.reminders.auto=e.target.checked;save()};
+    document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{S.reminders.rules.splice(+b.dataset.del,1);save();render()});
+    $("#addRule").onclick=()=>{S.reminders.rules.push({days:Math.max(0,+$("#rd").value||0),when:$("#rw").value});save();render()};
+    $("#runRem").onclick=()=>{let n=0;const td=today();S.fees.forEach(f=>{const hit=S.reminders.rules.some(r=>(r.when==="before"?addDays(f.due,-r.days):addDays(f.due,r.days))===td);if(hit)feeKids(f).filter(s=>!paid(f,s)).forEach(s=>{msg(s.parent,s.phone,tpl.remind(s.name,f),"reminder");n++})});toast(n?`${n} scheduled reminder${n===1?"":"s"} sent.`:"No reminders fall on today.")};}
+};
+function postView(kind){
+  const posts=S.posts.filter(p=>p.kind===kind);
+  return head(t(kind),`Post ${kind} for a class. Parents of that class get it on WhatsApp.`)+
+  `<div class="grid g2"><div class="panel"><h3>New post</h3><label class="f" for="pc">${t("selectClass")}</label><select class="in" id="pc">${classOpts("LKG","All classes")}</select>
+  <label class="f" for="pt">Description</label><textarea class="in" id="pt" placeholder="${kind==="homework"?"Practise the letter B. Draw three things that start with B.":"Today we learnt about fruits and made a paper apple."}"></textarea>
+  <div class="btnrow"><button class="btn" id="doPost">${t("post")}</button></div></div>
+  <div class="panel"><h3>Recent posts</h3><ul class="list">${posts.map(p=>`<li><div class="who">${esc(p.text)}<small>${p.cls==="all"?"All classes":esc(p.cls)}, ${nice(p.at)}</small></div></li>`).join("")||`<li class="empty">Nothing posted yet.</li>`}</ul></div></div>`;
+}
+function postBind(kind){$("#doPost").onclick=()=>{const text=$("#pt").value.trim(),cls=$("#pc").value;if(!text){toast("Write something to post.");return}
+  S.posts.unshift({id:uid(),kind,cls,text,at:today()});const n=kidsIn(cls).length;msg(`${cls==="all"?"All":cls} parents (${n})`,null,tpl.post(kind,cls==="all"?"All classes":cls,text),kind);save();toast(`Posted. ${n} parents notified.`);render()};}
+V.homework=()=>postView("homework");V.homework.bind=()=>postBind("homework");
+V.classwork=()=>postView("classwork");V.classwork.bind=()=>postBind("classwork");
+function dayItems(iso){
+  const ev=S.events.filter(e=>iso>=e.start&&iso<=(e.end||e.start));
+  const bd=S.students.filter(s=>s.dob.slice(5)===iso.slice(5)).map(s=>({type:"birthday",title:s.name+"’s birthday",bd:true}));
+  return ev.concat(bd);
+}
+V.calendar=(ro)=>{
+  const [y,m]=ui.calMonth.split("-").map(Number),first=new Date(y,m-1,1),start=new Date(first);start.setDate(1-first.getDay());
+  const cells=[];for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);cells.push(d)}
+  const td=today();
+  return head(t("calendar"),"School events, holidays and children’s birthdays in one place.",`<div class="row" style="flex:0 0 auto;align-items:center"><button class="btn ghost small" id="cp" aria-label="Previous month">‹</button><b style="min-width:130px;text-align:center">${first.toLocaleDateString("en-IN",{month:"long",year:"numeric"})}</b><button class="btn ghost small" id="cn" aria-label="Next month">›</button>${ro?"":`<button class="btn small" id="addEv">Add event</button>`}</div>`)+
+  `<div class="legend" style="margin-bottom:10px"><span><i style="background:${COLORS.event}"></i>School event</span><span><i style="background:${COLORS.holiday}"></i>Holiday</span><span><i style="background:${COLORS.birthday}"></i>Birthday</span></div>
+  <div class="cal">${["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d=>`<div class="dow">${d}</div>`).join("")}
+  ${cells.map(d=>{const iso=ymd(d),it=dayItems(iso);return `<button class="day ${d.getMonth()!==m-1?"out":""} ${iso===td?"today":""}" data-day="${iso}" aria-label="${nice(iso)}, ${it.length} items"><span class="n">${d.getDate()}</span>${it.slice(0,3).map(e=>`<span class="ev" style="background:${COLORS[e.type]}">${esc(e.title)}</span>`).join("")}</button>`}).join("")}</div>`;
+};
+V.calendar.bind=(ro)=>{
+  const shift=n=>{const [y,m]=ui.calMonth.split("-").map(Number);const d=new Date(y,m-1+n,1);ui.calMonth=ymd(d).slice(0,7);render()};
+  $("#cp").onclick=()=>shift(-1);$("#cn").onclick=()=>shift(1);if(!ro)$("#addEv").onclick=()=>evModal(today());
+  document.querySelectorAll("[data-day]").forEach(b=>b.onclick=()=>{const iso=b.dataset.day,it=dayItems(iso);
+    if(!it.length){if(!ro)evModal(iso);return}
+    modal(`<h3>${nice(iso)}</h3><ul class="list">${it.map(e=>`<li><span class="ev" style="background:${COLORS[e.type]};width:10px;height:10px;padding:0"></span><div class="who">${esc(e.title)}${e.desc?`<small>${esc(e.desc)}</small>`:""}</div>${e.id&&!ro?`<button class="btn ghost small" data-delev="${e.id}">Delete</button>`:""}</li>`).join("")}</ul><div class="btnrow">${ro?"":`<button class="btn" id="more">Add event</button>`}<button class="btn ghost" onclick="closeModal()">Close</button></div>`);
+    if(!ro)$("#more").onclick=()=>evModal(iso);
+    document.querySelectorAll("[data-delev]").forEach(x=>x.onclick=()=>{S.events=S.events.filter(e=>e.id!==x.dataset.delev);save();closeModal();render()});});
+};
+function evModal(iso){
+  modal(`<h3>Add event</h3><label class="f" for="et">Type</label><select class="in" id="et"><option value="event">School event</option><option value="holiday">Holiday</option></select>
+  <label class="f" for="en">Title</label><input class="in" id="en"><label class="f" for="ed">Description (optional)</label><input class="in" id="ed">
+  <div class="row"><div><label class="f" for="es">Starts</label><input class="in" type="date" id="es" value="${iso}"></div><div><label class="f" for="ee">Ends (optional)</label><input class="in" type="date" id="ee"></div></div>
+  <label style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="checkbox" id="eb"> Tell all parents on WhatsApp</label>
+  <div class="btnrow"><button class="btn" id="saveEv">Save event</button><button class="btn ghost" onclick="closeModal()">Cancel</button></div>`);
+  $("#saveEv").onclick=()=>{const title=$("#en").value.trim();if(!title){toast("Give the event a title.");return}
+    const e={id:uid(),type:$("#et").value,title,desc:$("#ed").value.trim(),start:$("#es").value,end:$("#ee").value};S.events.push(e);
+    if($("#eb").checked){const tx=`${e.type==="holiday"?"Holiday":"Event"}: ${title} on ${nice(e.start)}${e.end?" to "+nice(e.end):""}. ${e.desc}`;msg(`All parents (${S.students.length})`,null,tx+"\n— "+sch(),"event");S.broadcasts.unshift({aud:"all",to:`All parents (${S.students.length})`,text:tx,at:new Date().toLocaleString("en-IN",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})})}
+    save();closeModal();toast("Event saved.");render()};
+}
+V.broadcasts=()=>head(t("broadcasts"),"Send one message to every parent, one class, or the staff.")+
+  `<div class="grid g2"><div class="panel"><label class="f" for="ba">Send to</label><select class="in" id="ba"><option value="all">All parents</option>${CLASSES.map(c=>`<option value="${c}">${c} parents</option>`).join("")}<option value="staff">All staff</option></select>
+  <label class="f" for="bt">Message</label><textarea class="in" id="bt"></textarea>
+  <div class="chips">${[["Colour day","Dear parents, tomorrow is colour day. Please send your child in bright colours."],["Holiday","Dear parents, school will remain closed tomorrow. Classes resume the day after."],["PTM","Dear parents, the parent–teacher meeting is this Saturday from 10 am to 12 noon."],["Rain","Due to heavy rain, school is closed today. Stay safe."]].map(c=>`<button class="chip" data-tpl="${esc(c[1])}">${c[0]}</button>`).join("")}</div>
+  <div class="btnrow"><button class="btn" id="sendB">Send broadcast</button></div></div>
+  <div class="panel"><h3>Recent broadcasts</h3><ul class="list">${S.broadcasts.map(b=>`<li><div class="who">${esc(b.text)}<small>To ${esc(b.to)}, ${esc(b.at)}</small></div></li>`).join("")||`<li class="empty">Sent broadcasts show up here.</li>`}</ul></div></div>`;
+V.broadcasts.bind=()=>{
+  document.querySelectorAll("[data-tpl]").forEach(c=>c.onclick=()=>{$("#bt").value=c.dataset.tpl});
+  $("#sendB").onclick=()=>{const text=$("#bt").value.trim(),a=$("#ba").value;if(!text){toast("Write a message first.");return}
+    const n=a==="staff"?S.staff.length:kidsIn(a).length,to=a==="staff"?`All staff (${n})`:a==="all"?`All parents (${n})`:`${a} parents (${n})`;
+    S.broadcasts.unshift({aud:a,to,text,at:new Date().toLocaleString("en-IN",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"})});msg(to,null,text+"\n— "+sch(),"broadcast");save();toast(`Broadcast sent to ${n}.`);render()};
+};
+const STAT=["New","Contacted","Visit booked","Admitted","Not interested"];
+V.leads=()=>{
+  const list=S.leads.filter(l=>ui.leadFilter==="All"||l.status===ui.leadFilter);
+  return head(t("leads"),"Enquiries from the website form and the WhatsApp assistant land here.")+
+  `<div class="grid g2"><div class="panel"><h3>Admission enquiry form</h3><p class="sub" style="font-size:.9rem">This is what parents fill on the school website.</p>
+  <label class="f" for="ln">Parent’s name</label><input class="in" id="ln"><label class="f" for="lp">Mobile number</label><input class="in" id="lp" inputmode="tel">
+  <div class="row"><div><label class="f" for="lc">Child’s name</label><input class="in" id="lc"></div><div><label class="f" for="lk">Class</label><select class="in" id="lk">${classOpts("Pre-KG")}</select></div></div>
+  <label class="f" for="lm">Anything we should know? (optional)</label><input class="in" id="lm">
+  <div class="btnrow"><button class="btn" id="addLead">Send enquiry</button></div></div>
+  <div class="panel"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap"><h3>Enquiries</h3><select class="in" id="lf" style="width:auto"><option>All</option>${STAT.map(s=>`<option ${s===ui.leadFilter?"selected":""}>${s}</option>`).join("")}</select></div>
+  <ul class="list">${list.map(l=>`<li style="flex-wrap:wrap"><div class="who">${esc(l.name)}, ${esc(l.phone)}<small>${esc(l.child)} for ${esc(l.cls)}. ${esc(l.source)}, ${nice(l.at)}${l.note?". "+esc(l.note):""}</small></div>
+   <select class="in" style="width:auto" data-ls="${l.id}">${STAT.map(s=>`<option ${s===l.status?"selected":""}>${s}</option>`).join("")}</select>
+   <a class="btn small ghost" href="${wa(l.phone,`Hello ${l.name}, thank you for your interest in ${sch()}. When would you like to visit the school with ${l.child}?`)}" target="_blank" rel="noopener">Reply</a></li>`).join("")||`<li class="empty">No enquiries with this status.</li>`}</ul></div></div>`;
+};
+V.leads.bind=()=>{
+  $("#lf").onchange=e=>{ui.leadFilter=e.target.value;render()};
+  document.querySelectorAll("[data-ls]").forEach(s=>s.onchange=()=>{S.leads.find(l=>l.id===s.dataset.ls).status=s.value;save();toast("Status updated.")});
+  $("#addLead").onclick=()=>{const name=$("#ln").value.trim(),phone=$("#lp").value.trim();if(!name||phone.replace(/\D/g,"").length<10){toast("Add the parent’s name and a 10-digit mobile number.");return}
+    S.leads.unshift({id:uid(),name,phone,child:$("#lc").value.trim()||"Child",cls:$("#lk").value,status:"New",source:"Website form",at:today(),note:$("#lm").value.trim()});save();toast("Enquiry received.");render()};
+};
+/* rule-based assistant using the school profile */
+function answer(q){
+  const s=S.settings,x=q.toLowerCase(),td=today(),has=(...w)=>w.some(k=>x.includes(k));
+  if(has("hi","hello","vanakkam","வணக்கம்","hey"))return `Vanakkam! Welcome to ${sch()}. Ask me about admissions, fees, timings, holidays or events.`;
+  if(has("admission","admit","join","seat","enrol","enroll","சேர்க்கை"))return s.admissions?`Admissions are open for ${CLASSES.join(", ")}. Age groups: ${s.ages}. Share your name and child’s age and the office will call you to book a school visit.`:"Admissions are closed for now. Leave your number and we’ll tell you when they open.";
+  if(has("age","old","years"))return `Age groups: ${s.ages}.`;
+  if(has("fee","fees","price","cost","amount","கட்டணம்"))return `Current fees: ${S.fees.filter(f=>f.target==="all").map(f=>`${f.title} ${money(f.amount)}`).join(", ")||"the office will share the fee sheet"}. For a full fee sheet for your child’s class, the office will message you on WhatsApp.`;
+  if(has("time","timing","hours","when does","நேரம்"))return `School hours are ${s.timings}.`;
+  if(has("holiday","leave","closed","விடுமுறை")){const h=S.events.filter(e=>e.type==="holiday"&&(e.end||e.start)>=td).sort((a,b)=>a.start.localeCompare(b.start));return h.length?"Upcoming holidays: "+h.slice(0,3).map(e=>`${e.title} on ${nice(e.start)}${e.end?" to "+nice(e.end):""}`).join("; ")+".":"No holidays are scheduled right now."}
+  if(has("event","function","day","programme","program","meeting")){const e=S.events.filter(e=>e.type==="event"&&e.start>=td).sort((a,b)=>a.start.localeCompare(b.start));return e.length?"Coming up: "+e.slice(0,3).map(v=>`${v.title} on ${nice(v.start)}`).join("; ")+".":"No events are planned right now."}
+  if(has("where","address","location","place","map"))return `We’re at ${s.address}.`;
+  if(has("phone","contact","call","number"))return s.phone?`You can call the school on ${s.phone}.`:"The office will call you back. Please share your number.";
+  if(has("van","transport","bus","pickup"))return "Van service is available on select routes. Share your area and the office will confirm.";
+  const me=myKids()[0];S.leads.unshift({id:uid(),name:me?me.parent:"Parent (assistant chat)",phone:me?me.phone:"",child:me?me.name:"-",cls:me?me.cls:"-",status:"New",source:"AI assistant",at:td,note:q});save();
+  return "I’ve passed your question to the school office. Someone will get back to you shortly.";
+}
+V.assistant=()=>head(t("assistant"),"Answers parents’ common questions any time of day, using the details in School profile. Questions it can’t answer go to Admissions.")+
+  `<div class="panel" style="max-width:720px"><div class="chat" id="chat">${ui.chat.map(m=>m.me?`<div class="q">${esc(m.t)}</div>`:`<div class="ans"><small>Assistant</small>${esc(m.t)}</div>`).join("")||`<div class="ans"><small>Assistant</small>Vanakkam! Try asking what a parent would ask on WhatsApp.</div>`}</div>
+  <div class="chips">${["Are admissions open?","What are the school timings?","What is the fee?","Any holidays coming up?","Do you have van service?"].map(q=>`<button class="chip" data-q="${q}">${q}</button>`).join("")}</div>
+  <div class="row" style="margin-top:12px"><input class="in" id="cq" placeholder="Type a parent’s question" style="flex:4"><button class="btn" id="cs" style="flex:1">${t("send")}</button></div></div>`;
+V.assistant.bind=()=>{
+  const ask=q=>{if(!q.trim())return;ui.chat.push({me:1,t:q});ui.chat.push({t:answer(q)});render();const c=$("#chat");c.scrollTop=c.scrollHeight;$("#cq").focus()};
+  document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>ask(b.dataset.q));
+  $("#cs").onclick=()=>ask($("#cq").value);$("#cq").onkeydown=e=>{if(e.key==="Enter")ask(e.target.value)};
+  const c=$("#chat");c.scrollTop=c.scrollHeight;
+};
+const SW=["#5B3FA8","#1F6FB2","#2E8B57","#C2410C","#B5246B","#0F766E"];
+V["school-profile"]=()=>{const s=S.settings;return head(t("profile"),"Your school’s name, colours and details. The assistant and parent messages use these.")+
+  `<div class="panel" style="max-width:640px"><div class="row"><div><label class="f" for="sn">School name</label><input class="in" id="sn" value="${esc(s.name)}"></div><div><label class="f" for="sp">Place</label><input class="in" id="sp" value="${esc(s.place)}"></div></div>
+  <label class="f" for="stg">Tagline</label><input class="in" id="stg" value="${esc(s.tagline)}">
+  <div class="row"><div><label class="f" for="sph">School phone</label><input class="in" id="sph" value="${esc(s.phone)}" inputmode="tel"></div><div><label class="f" for="swa">WhatsApp number</label><input class="in" id="swa" value="${esc(s.whatsapp)}" inputmode="tel"></div></div>
+  <label class="f" for="sad">Address</label><input class="in" id="sad" value="${esc(s.address)}">
+  <label class="f" for="sti">School timings</label><input class="in" id="sti" value="${esc(s.timings)}">
+  <label class="f" for="sag">Age groups</label><input class="in" id="sag" value="${esc(s.ages)}">
+  <label style="display:flex;gap:8px;align-items:center;margin-top:12px;font-weight:700"><input type="checkbox" id="sadm" ${s.admissions?"checked":""}> Admissions are open</label>
+  <label class="f">Brand colour</label><div class="swatches">${SW.map(c=>`<button class="sw" style="background:${c}" data-c="${c}" aria-label="Colour ${c}" aria-pressed="${c===s.brand}"></button>`).join("")}</div>
+  <div class="btnrow"><button class="btn" id="saveP">Save profile</button><button class="btn ghost" id="reset">Reset demo data</button></div></div>`;};
+V["school-profile"].bind=()=>{
+  let brand=S.settings.brand;
+  document.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{brand=b.dataset.c;document.querySelectorAll("[data-c]").forEach(x=>x.setAttribute("aria-pressed",x===b));applyBrand(brand)});
+  $("#saveP").onclick=()=>{Object.assign(S.settings,{name:$("#sn").value.trim()||"Maaya Kids Castle",place:$("#sp").value.trim(),tagline:$("#stg").value.trim(),phone:$("#sph").value.trim(),whatsapp:$("#swa").value.trim(),address:$("#sad").value.trim(),timings:$("#sti").value.trim(),ages:$("#sag").value.trim(),admissions:$("#sadm").checked,brand});save();chrome();toast("Profile saved.")};
+  $("#reset").onclick=()=>{if(confirm("Reset all demo data? This clears attendance, fees, posts and messages.")){S=seed();save();chrome();drawOut();render();toast("Demo data reset.")}};
+};
+
+/* ---------- shell ---------- */
+const ROUTES=["dashboard","attendance","staff","fees","homework","classwork","calendar","broadcasts","leads","parents","assistant","school-profile"];
+const PROUTES=["home","attendance","homework","fees","calendar","notices","assistant"];
+const APP_URL="https://gkgokul600-byte.github.io/maaya-kids-castle/";
+const newPin=()=>String(Math.floor(1000+Math.random()*9000));
+const loginMsg=(par,kids,ph,pin)=>S.lang==="ta"?`வணக்கம் ${par}! ${kids} வருகை, வீட்டுப்பாடம், கட்டணம் மற்றும் பள்ளி அறிவிப்புகளை இனி ஆன்லைனில் பார்க்கலாம்.\nலிங்க்: ${APP_URL}\nகைபேசி: ${ph}\nPIN: ${pin}\n— ${sch()}`:`Vanakkam ${par}! You can now see ${kids}’s attendance, homework, fees and school notices online.\nLink: ${APP_URL}\nMobile: ${ph}\nPIN: ${pin}\n— ${sch()}`;
+
+/* ---------- staff: parents & logins ---------- */
+V.parents=()=>{const fam={};S.students.forEach(s=>{const p=norm(s.phone);(fam[p]=fam[p]||{phone:p,parent:s.parent,kids:[]}).kids.push(s)});
+ return head(t("parents"),"Each family logs in with their mobile number and a 4-digit PIN. Send the login to parents on WhatsApp.")+
+ `<div class="grid g2"><div class="panel"><h3>Families</h3><ul class="list">${Object.values(fam).map(f=>`<li style="flex-wrap:wrap"><div class="who">${esc(f.parent)}, ${esc(f.phone)}<small>${f.kids.map(k=>esc(k.name)+" ("+k.cls+")").join(", ")}. PIN ${esc(S.parentPins[f.phone]||"not set")}</small></div><button class="btn small" data-share="${f.phone}">Send login</button><button class="btn small ghost" data-newpin="${f.phone}">New PIN</button></li>`).join("")}</ul></div>
+ <div class="panel"><h3>Add a child</h3><label class="f" for="kn">Child’s name</label><input class="in" id="kn">
+ <div class="row"><div><label class="f" for="kc">Class</label><select class="in" id="kc">${classOpts("LKG")}</select></div><div><label class="f" for="kd">Date of birth</label><input class="in" type="date" id="kd"></div></div>
+ <label class="f" for="kp">Parent’s name</label><input class="in" id="kp"><label class="f" for="kph">Parent’s mobile</label><input class="in" id="kph" inputmode="tel">
+ <p class="sub" style="font-size:.88rem">Brothers and sisters share one login when you use the same mobile number.</p><div class="btnrow"><button class="btn" id="addKid">Add child</button></div>
+ <h3 style="margin-top:22px">Staff PIN</h3><p class="sub" style="font-size:.9rem">Teachers and the office log in with this.</p><div class="row"><input class="in" id="spin" value="${esc(S.settings.staffPin)}" inputmode="numeric"><button class="btn ghost" id="saveSpin" style="flex:0 0 auto">Save PIN</button></div></div></div>`};
+V.parents.bind=()=>{
+ document.querySelectorAll("[data-newpin]").forEach(b=>b.onclick=()=>{S.parentPins[b.dataset.newpin]=newPin();save();toast("New PIN set. Send the login again.");render()});
+ document.querySelectorAll("[data-share]").forEach(b=>b.onclick=()=>{const p=b.dataset.share,k=S.students.filter(s=>norm(s.phone)===p);if(!S.parentPins[p])S.parentPins[p]=newPin();
+   msg(k[0].parent,p,loginMsg(k[0].parent,k.map(x=>x.name).join(" & "),p,S.parentPins[p]),"login");save();openOut(true);render()});
+ $("#addKid").onclick=()=>{const name=$("#kn").value.trim(),ph=norm($("#kph").value);if(!name||ph.length!==10){toast("Add the child’s name and a 10-digit mobile number.");return}
+   S.students.push({id:"s"+uid(),name,cls:$("#kc").value,parent:$("#kp").value.trim()||"Parent",phone:ph,dob:$("#kd").value||""});if(!S.parentPins[ph])S.parentPins[ph]=newPin();save();toast(name+" added.");render()};
+ $("#saveSpin").onclick=()=>{const v=$("#spin").value.trim();if(v.length<4){toast("Use at least 4 digits.");return}S.settings.staffPin=v;save();toast("Staff PIN saved.")};
+};
+
+/* ---------- login ---------- */
+function loginView(){return `<div class="head" style="justify-content:center;text-align:center"><div><h2>${t("welcome")}</h2><p class="sub">${t("loginSub")}</p></div></div>
+ <div class="login"><div class="panel"><h3>${t("parentLogin")}</h3><p class="sub" style="font-size:.9rem">${t("parentLoginSub")}</p>
+ <label class="f" for="lgp">${t("mobile")}</label><input class="in" id="lgp" inputmode="tel" autocomplete="tel">
+ <label class="f" for="lgn">PIN</label><input class="in" id="lgn" inputmode="numeric" type="password" maxlength="6" autocomplete="current-password">
+ <div class="btnrow"><button class="btn" id="lgParent">${t("login")}</button></div></div>
+ <div class="panel"><h3>${t("staffLogin")}</h3><p class="sub" style="font-size:.9rem">${t("staffLoginSub")}</p>
+ <label class="f" for="lgs">${t("staffPin")}</label><input class="in" id="lgs" inputmode="numeric" type="password" maxlength="8">
+ <div class="btnrow"><button class="btn" id="lgStaff">${t("login")}</button>${CAN_EDIT?`<button class="btn ghost" id="lgOwner">${t("continueAdmin")}</button>`:""}</div></div></div>`}
+function loginBind(){
+ const go=()=>{const ph=norm($("#lgp").value),pin=$("#lgn").value.trim();if(ph.length!==10||!S.parentPins[ph]||S.parentPins[ph]!==pin||!S.students.some(s=>norm(s.phone)===ph)){toast(t("badLogin"));return}
+   setSes({role:"parent",phone:ph});ui.child=null;history.replaceState(null,"","#home");refresh(true)};
+ $("#lgParent").onclick=go;$("#lgn").onkeydown=e=>{if(e.key==="Enter")go()};
+ const st=()=>{if($("#lgs").value.trim()!==S.settings.staffPin){toast(t("badPin"));return}setSes({role:"staff"});history.replaceState(null,"","#dashboard");refresh(true)};
+ $("#lgStaff").onclick=st;$("#lgs").onkeydown=e=>{if(e.key==="Enter")st()};
+ const o=$("#lgOwner");if(o)o.onclick=()=>{setSes({role:"staff"});history.replaceState(null,"","#dashboard");refresh(true)};
+}
+
+/* ---------- parent views ---------- */
+const PV={};
+const child=()=>{const k=myKids();return k.find(s=>s.id===ui.child)||k[0]};
+const kidAtt=k=>Object.entries(S.attendance).filter(([key,v])=>key.endsWith("|"+k.cls)&&v[k.id]).map(([key,v])=>({d:key.split("|")[0],s:v[k.id]})).sort((a,b)=>b.d.localeCompare(a.d));
+const kidPosts=k=>S.posts.filter(p=>p.cls===k.cls||p.cls==="all");
+const kidFees=k=>S.fees.filter(f=>feeKids(f).some(s=>s.id===k.id));
+const kidNotices=k=>S.broadcasts.filter(b=>b.aud!=="staff"&&(!b.aud||b.aud==="all"||b.aud===k.cls));
+function kidHead(){const k=child(),ks=myKids();return `<div class="panel kid" style="margin-bottom:18px"><div class="avatar">${esc(k.name[0])}</div><div class="who"><b style="font-family:var(--display);font-size:1.3rem">${esc(k.name)}</b><small>${esc(k.cls)}, ${esc(sch())}</small></div>${ks.length>1?`<select class="in" id="kidSel" style="width:auto" aria-label="Child">${ks.map(x=>`<option value="${x.id}" ${x.id===k.id?"selected":""}>${esc(x.name)}</option>`).join("")}</select>`:""}</div>`}
+const kidBind=()=>{const s=$("#kidSel");if(s)s.onchange=()=>{ui.child=s.value;render()}};
+PV.home=()=>{const k=child(),td=today(),a=(S.attendance[td+"|"+k.cls]||{})[k.id],fees=kidFees(k).filter(f=>!paid(f,k)),hw=kidPosts(k)[0],ev=S.events.filter(e=>(e.end||e.start)>=td).sort((x,y)=>x.start.localeCompare(y.start))[0],nt=kidNotices(k)[0];
+ return kidHead()+`<div class="grid g4">
+ <a class="stat ${a==="A"?"rose":"mint"}" href="#attendance"><b style="font-size:1.45rem;padding:4px 0">${a==="P"?t("present"):a==="A"?t("absent"):t("notMarked")}</b><span>Today, ${nice(td)}</span></a>
+ <a class="stat sun" href="#fees"><b>${money(fees.reduce((n,f)=>n+f.amount,0))}</b><span>${fees.length?esc(t("due")+": "+fees.map(f=>f.title).join(", ")):"All fees paid"}</span></a>
+ <a class="stat brand" href="#calendar"><b style="font-size:1.25rem;padding:6px 0">${ev?esc(ev.title):"Nothing planned"}</b><span>${ev?nice(ev.start):"Check the calendar later"}</span></a></div>
+ <div class="grid g2" style="margin-top:16px"><div class="panel"><h3>${hw?(hw.kind==="homework"?t("homework"):t("classwork")):t("homework")}</h3>${hw?`<p style="white-space:pre-wrap">${esc(hw.text)}</p><p class="sub">${nice(hw.at)}</p>`:`<p class="empty">Nothing posted yet.</p>`}</div>
+ <div class="panel"><h3>${t("notices")}</h3>${nt?`<p style="white-space:pre-wrap">${esc(nt.text)}</p><p class="sub">${esc(nt.at)}</p>`:`<p class="empty">No notices yet.</p>`}</div></div>`};
+PV.attendance=()=>{const k=child(),r=kidAtt(k),m=today().slice(0,7),mm=r.filter(x=>x.d.startsWith(m));
+ return kidHead()+head(t("attendance"),"")+`<div class="grid g4"><div class="stat mint"><b>${mm.filter(x=>x.s==="P").length}</b><span>Days present this month</span></div><div class="stat rose"><b>${mm.filter(x=>x.s==="A").length}</b><span>Days absent this month</span></div></div>
+ <div class="panel" style="margin-top:16px"><ul class="list">${r.map(x=>`<li><div class="who">${nice(x.d)}</div><span class="tag ${x.s==="P"?"ok":"bad"}">${x.s==="P"?t("present"):t("absent")}</span></li>`).join("")||`<li class="empty">Attendance shows up here once the class teacher marks it.</li>`}</ul></div>`};
+PV.homework=()=>{const k=child();return kidHead()+head(t("homework"),"Homework and classwork from "+esc(k.cls)+".")+`<div class="panel"><ul class="list">${kidPosts(k).map(p=>`<li><div class="who" style="white-space:pre-wrap">${esc(p.text)}<small>${nice(p.at)}</small></div><span class="tag">${p.kind==="homework"?t("homework"):t("classwork")}</span></li>`).join("")||`<li class="empty">Nothing posted yet.</li>`}</ul></div>`};
+PV.fees=()=>{const k=child(),fs=kidFees(k);return kidHead()+head(t("fees"),"Pay at the school office. Your receipt comes on WhatsApp and shows here.")+`<div class="panel"><ul class="list">${fs.map(f=>{const p=S.payments.find(x=>x.fid===f.id&&x.sid===k.id);return `<li><div class="who">${esc(f.title)}<small>${money(f.amount)}, ${p?"paid on "+nice(p.at):"due "+nice(f.due)}</small></div><span class="tag ${p?"ok":"bad"}">${p?t("paid"):t("due")}</span></li>`}).join("")||`<li class="empty">No fees yet.</li>`}</ul></div>`};
+PV.notices=()=>{const k=child();return kidHead()+head(t("notices"),"Messages from the school.")+`<div class="panel"><ul class="list">${kidNotices(k).map(b=>`<li><div class="who" style="white-space:pre-wrap">${esc(b.text)}<small>${esc(b.at)}</small></div></li>`).join("")||`<li class="empty">No notices yet.</li>`}</ul></div>`};
+PV.calendar=()=>kidHead()+V.calendar(true);
+PV.assistant=()=>V.assistant();
+["home","attendance","homework","fees","notices"].forEach(r=>PV[r].bind=kidBind);
+PV.calendar.bind=()=>{kidBind();V.calendar.bind(true)};
+PV.assistant.bind=()=>V.assistant.bind();
+const label=r=>t(r==="school-profile"?"profile":r);
+function applyBrand(c){document.documentElement.style.setProperty("--brand",c)}
+function chrome(){
+  applyBrand(S.settings.brand);$("#schoolName").textContent=S.settings.name;$("#schoolPlace").textContent=S.settings.place;
+  document.title=`${S.settings.name}, ${S.settings.place}`;$("#langBtn").textContent=S.lang==="ta"?"English":"தமிழ்";
+  document.documentElement.lang=S.lang;$("#outBtn").hidden=!SES||isParent();$("#logoutBtn").hidden=!SES;document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t(el.dataset.t));
+}
+function route(){const h=location.hash.slice(1),l=isParent()?PROUTES:ROUTES;return l.includes(h)?h:l[0]}
+function render(){
+  if(!SES||(isParent()&&!myKids().length)){if(SES)setSes(null);chrome();$("#tabs").innerHTML="";$("#view").innerHTML=loginView();loginBind();return}
+  const r=route(),l=isParent()?PROUTES:ROUTES,M=isParent()?PV:V;
+  $("#tabs").innerHTML=l.map(x=>`<a href="#${x}" ${x===r?'aria-current="page"':""}>${label(x)}</a>`).join("");
+  $("#view").innerHTML=M[r]();M[r].bind();
+  document.querySelectorAll("[data-cls]").forEach(a=>a.addEventListener("click",()=>{ui.attCls=a.dataset.cls}));
+  const cur=$("#tabs [aria-current]");cur&&cur.scrollIntoView({block:"nearest",inline:"nearest"});
+}
+$("#logoutBtn").onclick=()=>{setSes(null);ui.child=null;ui.chat=[];history.replaceState(null,"","#");refresh(true)};
+$("#langBtn").onclick=()=>{S.lang=S.lang==="ta"?"en":"ta";save();chrome();drawOut();render()};
+addEventListener("hashchange",()=>{render();scrollTo(0,0)});
+chrome();drawOut();render();
+</script>
+</body>
+</html>
