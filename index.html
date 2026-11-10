@@ -173,13 +173,13 @@ a.stat{text-decoration:none;color:inherit}
 <script>
 /* ---------- i18n ---------- */
 const T={en:{dashboard:"Home",attendance:"Attendance",staff:"Staff attendance",fees:"Fees & payments",homework:"Homework",classwork:"Classwork",calendar:"Calendar",broadcasts:"Broadcasts",leads:"Admissions",assistant:"AI assistant",profile:"School profile",
-parentMsgs:"Parent messages",clear:"Clear",outNote:"Every message the portal sends to parents appears here. Open this page on the school phone (WhatsApp 9080094817) and tap “Open in WhatsApp” to send.",
+parentMsgs:"Parent messages",clear:"Clear",outNote:"Every message the portal sends to parents appears here. Open this page on the school phone (WhatsApp 8825551273) and tap “Open in WhatsApp” to send.",
 selectClass:"Class",date:"Date",save:"Save",send:"Send",markAll:"Mark all present",saveAtt:"Save attendance",post:"Post",openWa:"Open in WhatsApp",home:"Home",notices:"Notices",parents:"Parents & logins",logout:"Log out",
 welcome:"Welcome",loginSub:"Parents and school staff log in here.",parentLogin:"I’m a parent",parentLoginSub:"Use the mobile number you gave the school and the PIN the school sent you on WhatsApp.",mobile:"Mobile number",login:"Log in",
 staffLogin:"School staff",staffLoginSub:"For the office and teachers.",staffPin:"Staff PIN",continueAdmin:"Continue as school admin",badLogin:"That mobile number and PIN don’t match. Check the WhatsApp message from the school.",badPin:"Wrong staff PIN.",
 present:"Present",absent:"Absent",notMarked:"Not marked yet",paid:"Paid",due:"Due"},
 ta:{dashboard:"முகப்பு",attendance:"வருகைப்பதிவு",staff:"பணியாளர் வருகை",fees:"கட்டணங்கள்",homework:"வீட்டுப்பாடம்",classwork:"வகுப்புப்பணி",calendar:"நாட்காட்டி",broadcasts:"அறிவிப்புகள்",leads:"சேர்க்கை",assistant:"AI உதவியாளர்",profile:"பள்ளி விவரம்",
-parentMsgs:"பெற்றோர் செய்திகள்",clear:"அழி",outNote:"பெற்றோருக்கு அனுப்பப்படும் ஒவ்வொரு செய்தியும் இங்கே தெரியும். பள்ளி போனில் (WhatsApp 9080094817) இந்தப் பக்கத்தைத் திறந்து “WhatsApp-இல் திற” என்பதைத் தட்டவும்.",
+parentMsgs:"பெற்றோர் செய்திகள்",clear:"அழி",outNote:"பெற்றோருக்கு அனுப்பப்படும் ஒவ்வொரு செய்தியும் இங்கே தெரியும். பள்ளி போனில் (WhatsApp 8825551273) இந்தப் பக்கத்தைத் திறந்து “WhatsApp-இல் திற” என்பதைத் தட்டவும்.",
 selectClass:"வகுப்பு",date:"தேதி",save:"சேமி",send:"அனுப்பு",markAll:"அனைவரும் வருகை",saveAtt:"வருகையைச் சேமி",post:"பதிவிடு",openWa:"WhatsApp-இல் திற",home:"முகப்பு",notices:"அறிவிப்புகள்",parents:"பெற்றோர் உள்நுழைவு",logout:"வெளியேறு",
 welcome:"வணக்கம்",loginSub:"பெற்றோர் மற்றும் பள்ளி ஊழியர்கள் இங்கே உள்நுழையலாம்.",parentLogin:"நான் பெற்றோர்",parentLoginSub:"பள்ளியில் கொடுத்த கைபேசி எண்ணையும், WhatsApp-இல் வந்த PIN-ஐயும் பயன்படுத்தவும்.",mobile:"கைபேசி எண்",login:"உள்நுழை",
 staffLogin:"பள்ளி ஊழியர்",staffLoginSub:"அலுவலகம் மற்றும் ஆசிரியர்களுக்கு.",staffPin:"ஊழியர் PIN",continueAdmin:"நிர்வாகியாகத் தொடர்",badLogin:"கைபேசி எண்ணும் PIN-உம் பொருந்தவில்லை. பள்ளியின் WhatsApp செய்தியைப் பார்க்கவும்.",badPin:"தவறான ஊழியர் PIN.",
@@ -206,7 +206,7 @@ function seed(){
   const kids=[["Aadhira","LKG","Mrs. Kavitha"],["Kavin","LKG","Mr. Senthil"],["Nila","LKG","Mrs. Revathi"],["Harini","LKG","Mrs. Uma"],["Yazhini","UKG","Mr. Arun"],["Mithran","UKG","Mrs. Divya"],["Diya","UKG","Mrs. Meena"],["Rithvik","UKG","Mr. Prakash"],["Ishaan","Pre-KG","Mr. Senthil"],["Tara","Pre-KG","Mr. Gopal"],["Vetri","Playgroup","Mrs. Anitha"],["Anika","Playgroup","Mr. Rajesh"]];
   const students=kids.map((k,i)=>({id:"s"+i,name:k[0],cls:k[1],parent:k[2],phone:"90000000"+pad((i===8?1:i)+1),dob:`20${k[1]==="UKG"?21:k[1]==="LKG"?22:k[1]==="Pre-KG"?23:24}-${m.slice(5)}-${pad(3+i*2)}`}));
   return {lang:"en",
-    settings:{name:"Maaya Kids Castle",place:"Annur",tagline:"A happy first school for little ones",phone:"9080094817",whatsapp:"9080094817",address:"Annur (add the full address in School profile)",timings:"9:30 am to 3:30 pm, Monday to Friday",ages:"Playgroup 1.5–2.5 yrs, Pre-KG 2.5–3.5 yrs, LKG 3.5–4.5 yrs, UKG 4.5–5.5 yrs",admissions:true,brand:"#5B3FA8",staffPin:"1234"},
+    settings:{name:"Maaya Kids Castle",place:"Annur",tagline:"A happy first school for little ones",phone:"8825551273",whatsapp:"8825551273",address:"Annur (add the full address in School profile)",timings:"9:30 am to 3:30 pm, Monday to Friday",ages:"Playgroup 1.5–2.5 yrs, Pre-KG 2.5–3.5 yrs, LKG 3.5–4.5 yrs, UKG 4.5–5.5 yrs",admissions:true,brand:"#5B3FA8",staffPin:"1234"},
     parentPins:Object.fromEntries([...new Set(students.map(s=>s.phone))].map((p,i)=>[p,String(4100+i*537).slice(-4)])),
     students,
     staff:[{name:"Priya",role:"Class teacher, LKG"},{name:"Lakshmi",role:"Class teacher, UKG"},{name:"Deepa",role:"Class teacher, Pre-KG"},{name:"Saranya",role:"Class teacher, Playgroup"},{name:"Selvi",role:"Helper"},{name:"Murugan",role:"Van driver"}],
@@ -223,6 +223,7 @@ function seed(){
 let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
 if(!S||!S.settings)S=seed();
 S.parentPins=S.parentPins||{};S.settings.staffPin=S.settings.staffPin||"1234";
+if(S.settings.phone==="9080094817")S.settings.phone="8825551273";if(S.settings.whatsapp==="9080094817")S.settings.whatsapp="8825551273";
 /* shared storage: the school's data lives in one shared document so parents see what staff enter */
 let REF=null,lastSent="",writing=false,again=false,timer=null,CAN_EDIT=false,pend=false;
 const syncNote=x=>{$("#sync").textContent=x};
